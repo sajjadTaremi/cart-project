@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Shabnam;
+    font-weight: 700;
+    font-style: normal;
+    src: url("font/Shabnam-Bold.woff") format("woff"),
+         url("font/Shabnam-Bold.woff2") format("woff2");
+         
+}
+
+@font-face {
+    font-family: Shabnam;
+    font-weight: 400;
+    font-style: normal;
+    src: url("font/Shabnam-Medium.woff") format("woff"),
+          url("font/Shabnam-Medium.woff2") format("woff2");
+}
+body,button{
+    font-family: Shabnam;
+}
+h1,h2,h3{
+    font-family: Shabnam;
+}
