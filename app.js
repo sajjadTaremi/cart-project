@@ -64,12 +64,28 @@ class UI {
         e.target.innerText = "اضافه شد";
         e.target.disable = true;
         btn.style.color = "red";
-       const addedProduct = storage.getProduct(id);
-       cart = [...cart,{...addedProduct, quantity: 1 }];
-       storage.saveCart(cart);
+        const addedProduct = storage.getProduct(id);
+        cart = [...cart, {
+          ...addedProduct,
+          quantity: 1
+        }];
+        storage.saveCart(cart);
+        // cart valu uptdae
+        this.cartValu(cart);
       });
     });
   };
+  cartValu(cart) {
+    // total price
+    let tempCartItem = 0;
+    const totalPrice = cart.reduce((acc, curr) => {
+      tempCartItem += curr.quantity;
+      return acc + curr.quantity * curr.price;
+    }, 0);
+    cartTotal.innerText = `مبلغ کل ${totalPrice.toFixed(2)}`;
+    cartItems.innerText = tempCartItem;
+    console.log(tempCartItem);
+  }
 
 }
 
@@ -80,11 +96,11 @@ class storage {
   static saveProducts(products) {
     localStorage.setItem("prodoucts", JSON.stringify(products));
   }
-  static getProduct(id){
-   const _products = JSON.parse(localStorage.getItem("prodoucts"));
-   return _products.find((p) => p.id === parseInt(id));
+  static getProduct(id) {
+    const _products = JSON.parse(localStorage.getItem("prodoucts"));
+    return _products.find((p) => p.id === parseInt(id));
   }
-  static saveCart(cart){
+  static saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 }
