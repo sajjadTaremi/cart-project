@@ -218,6 +218,15 @@ body {
   cursor: pointer;
   font-weight: bold;
 }
+.del-product {
+  cursor: pointer;
+  color: var(--mainRed);
+  font-size: 0.8rem;
+  border: 1px solid var(--mainRed);
+  border-radius: 8px;
+  padding: 0.5rem;
+  align-items: center;
+}
 .remove-item {
   cursor: pointer;
 }
