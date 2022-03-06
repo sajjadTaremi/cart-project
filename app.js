@@ -110,7 +110,7 @@ class UI {
 
     cartContent.addEventListener("click", (event) => {
   
-      if(event.target.classList.contains("fa-chevron-up")) {
+    if (event.target.classList.contains("fa-chevron-up")) {
         const addQuantity = event.target;
         const id = addQuantity.dataset.id;
         const addedItem = cart.find((c) => c.id == id);
@@ -118,11 +118,27 @@ class UI {
         this.cartValu(cart);
         storage.saveCart(cart);
         addQuantity.nextElementSibling.innerText = addedItem.quantity;
+      } else if(event.target.classList.contains("del-product")) {
+        const removeItem = event.target;
+        const _removedItem = cart.find((c) => c.id == removeItem.dataset.id);
+        this.removeItem(_removedItem.id);
+        this.cartValu(cart);
+        storage.saveCart(cart);
+        cartContent.removeChild(removeItem.parentElement);
+    }else if(event.target.classList.contains("fa-chevron-down")) {
+      const subQuantity = event.target;
+      const subItem = cart.find((c) => c.id == subQuantity.dataset.id);
+      if (subItem.quantity === 1) {
+        this.removeItem(subItem.id);
+        cartContent.removeChild(subQuantity.parentElement.parentElement);
+        return
       }
-    })
-
-    
-
+      subItem.quantity--;
+      this.cartValu(cart);
+      storage.saveCart(cart);
+      subQuantity.previousElementSibling.innerText = subItem.quantity;
+  }
+  });
   }
   
 
